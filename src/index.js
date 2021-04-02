@@ -61,22 +61,22 @@ export const contentArray = {
   ],
 
   artworks: [
-    {src: `${process.env.PUBLIC_URL}/artworks/1.jpg`, alt: "", title: ""},
-    {src: `${process.env.PUBLIC_URL}/artworks/2.jpg`, alt: "", title: ""},
-    {src: `${process.env.PUBLIC_URL}/artworks/3.jpg`, alt: "", title: ""},
-    {src: `${process.env.PUBLIC_URL}/artworks/4.jpg`, alt: "", title: ""},
-    {src: `${process.env.PUBLIC_URL}/artworks/5.jpg`, alt: "", title: ""},
-    {src: `${process.env.PUBLIC_URL}/artworks/6.jpg`, alt: "", title: ""},
-    {src: `${process.env.PUBLIC_URL}/artworks/7.jpg`, alt: "", title: ""},
-    {src: `${process.env.PUBLIC_URL}/artworks/8.jpg`, alt: "", title: ""},
-    {src: `${process.env.PUBLIC_URL}/artworks/9.jpg`, alt: "", title: ""},
-    {src: `${process.env.PUBLIC_URL}/artworks/10.jpg`, alt: "", title: ""},
-    {src: `${process.env.PUBLIC_URL}/artworks/11.jpg`, alt: "", title: ""}
+    {src: `${process.env.PUBLIC_URL}/artworks/1.jpg`, alt: "", title: "", style: { objectPosition: "top", objectFit: "cover" }},
+    {src: `${process.env.PUBLIC_URL}/artworks/2.jpg`, alt: "", title: "", style: { objectPosition: "center" }},
+    {src: `${process.env.PUBLIC_URL}/artworks/3.jpg`, alt: "", title: "", style: { objectPosition: "center" }},
+    {src: `${process.env.PUBLIC_URL}/artworks/4.jpg`, alt: "", title: "", style: { objectPosition: "top" }},
+    {src: `${process.env.PUBLIC_URL}/artworks/5.jpg`, alt: "", title: "", style: { objectPosition: "top" }},
+    {src: `${process.env.PUBLIC_URL}/artworks/6.jpg`, alt: "", title: "", style: { objectPosition: "top" }},
+    {src: `${process.env.PUBLIC_URL}/artworks/7.jpg`, alt: "", title: "", style: { objectPosition: "top" }},
+    {src: `${process.env.PUBLIC_URL}/artworks/8.jpg`, alt: "", title: "", style: { objectPosition: "top" }},
+    {src: `${process.env.PUBLIC_URL}/artworks/9.jpg`, alt: "", title: "", style: { objectPosition: "top" }},
+    {src: `${process.env.PUBLIC_URL}/artworks/10.jpg`, alt: "", title: "", style: { objectPosition: "center" }},
+    {src: `${process.env.PUBLIC_URL}/artworks/11.jpg`, alt: "", title: "", style: { objectPosition: "center" }}
   ]
 };
 
 export const menuOptions = [
-  ["FEATURED", "LOGOS", "CONTACT"],                     // ARTWORK MODE OPTIONS
+  ["FEATURED", "CONTACT"],                     // ARTWORK MODE OPTIONS
   ["FEATURED", "PEOPLE", "NATURE", "ACTS", "CONTACT"]   // PHOTO MODE OPTIONS
 ];
 

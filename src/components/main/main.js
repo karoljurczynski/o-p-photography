@@ -22,7 +22,7 @@ class Main extends React.Component {
 
     this.state = {
       isMenuOpened: false,
-      isLoaded: false,
+      isLoaded: this.props.isLoaded,
       isPhotoModeEnabled: this.props.mode,
     };
 
@@ -31,6 +31,7 @@ class Main extends React.Component {
     this.menuOpen = this.menuOpen.bind(this);
     this.linkToId = this.linkToId.bind(this);
     this.spinnerFunction = this.spinnerFunction.bind(this);
+    this.changeLoadingState = this.changeLoadingState.bind(this);
   }
 
   bodyFreezer(isMenuOpened) {
@@ -142,7 +143,7 @@ class Main extends React.Component {
   }
 
   spinnerFunction() {
-    setTimeout(() => { this.setState({ isLoaded: !this.state.isLoaded }) }, 600);
+    setTimeout(() => { this.setState({ isLoaded: true }) }, 600);
     window.scrollTo({top: 0, left: 0, behavior: "smooth"});
   }
 
@@ -198,28 +199,35 @@ class Main extends React.Component {
     }
   }
 
+  changeLoadingState() {
+    this.setState({isLoaded: !this.state.isLoaded});
+  }
+
   componentDidMount() {
     this.menuIconTransformer(false);
   }
 
+
   linkToId(e) {
     let container;
-    console.log(e.target.innerText);
 
     if (e.target.innerText.toLowerCase() !== "featured") {
       container = document.querySelector("#" + e.target.innerText.toLowerCase());
-
+      
       setTimeout(() => {
-        container.scrollIntoView({ behavior: "smooth" });
-      }, 0);
+        container.scrollIntoView({behavior: "smooth"});
+      }, 10);
     }
 
     else {
+      container = document.querySelector("#top");
+
       setTimeout(() => {
-        window.scrollTo({top: 0, left: 0, behavior: "smooth"});
-      }, 0);
+        container.scrollIntoView({behavior: "smooth"});
+      }, 10);
+
     }
-      
+
     this.menuClose();
     this.setState({isMenuOpened: !this.state.isMenuOpened});
   }
@@ -238,7 +246,7 @@ class Main extends React.Component {
           <span className="main__menu-icon__bottom-bar"></span>
         </button>
 
-        <section className="main__grid">
+        <section className="main__grid" style={ !this.props.isPhotoModeEnabled ? {gridAutoRows: ""} : null }>
 
 
           { // RENDERING WORKS
@@ -255,6 +263,7 @@ class Main extends React.Component {
 
           { // RENDERING CATEGORIES
             menuOptions[ Number(this.props.isPhotoModeEnabled) ].map(content => {
+              if (content === "CONTACT") return null;
               return (
                 
                 <div className={ this.props.isPhotoModeEnabled ? "main__grid__item__photo" : "main__grid__item__artwork" }>

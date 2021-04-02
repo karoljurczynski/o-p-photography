@@ -14,7 +14,7 @@ class Spinner extends React.Component {
   }
 
   loading() {
-    this.setState({ isLoaded: !this.state.isLoaded });
+    this.setState({ isLoaded: true });
     this.props.loaded();
   }
 
@@ -24,6 +24,7 @@ class Spinner extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener("load", this.loading);
+    this.setState({ isLoaded: false });
   }
 
   render() {

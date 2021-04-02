@@ -3,6 +3,7 @@
 import React from 'react';
 import '../styles/components/footer/footer.css';
 import { FaPhone, FaEnvelope, FaFacebookF, FaInstagram } from 'react-icons/fa';
+import vogue from './vogue.png';
 
 
 // COMPONENT
@@ -23,6 +24,12 @@ class Footer extends React.Component {
           <a className="footer__social-media__link" href="https://www.instagram.com/oliwier.pakula.photography" target="blank">
             <span className="footer__social-media__link__icon">
               <FaInstagram />
+            </span>
+          </a>
+
+          <a className="footer__social-media__link" href="">
+            <span className="footer__social-media__link__icon">
+              <img src={vogue} className="footer__social-media__link__icon__vogue" />
             </span>
           </a>
 

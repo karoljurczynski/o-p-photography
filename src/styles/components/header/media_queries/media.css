@@ -19,6 +19,7 @@
   .header__logo {
     font-size: 15px;
     margin: 15px 0;
+    width: 200px;
   }
   .header__mode-changer {
     position: static;

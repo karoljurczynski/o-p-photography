@@ -19,14 +19,15 @@ class App extends React.Component {
   changeMode(newState) {
     this.setState({isPhotoModeEnabled: newState})
   }
-
+  
   render() {
     return (
       
       <div className="wrapper">
 
+        <div id="top"></div>
         <Header changeMode={ this.changeMode } />
-        <Main isPhotoModeEnabled={ this.state.isPhotoModeEnabled }/>
+        <Main isPhotoModeEnabled={ this.state.isPhotoModeEnabled } />
         <Footer />
 
       </div>

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import '../styles/components/header/header.css';
+import Spinner from './main/spinner';
 
 
 // COMPONENT
@@ -9,7 +10,7 @@ import '../styles/components/header/header.css';
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isButtonSetAtPhotos: true };
+    this.state = { isButtonSetAtPhotos: true, isLoaded: false };
     this.handleModeChange = this.handleModeChange.bind(this);
     this.handleModeChangeToPhotos = this.handleModeChangeToPhotos.bind(this);
     this.handleModeChangeToGraphics = this.handleModeChangeToGraphics.bind(this);
@@ -23,7 +24,21 @@ class Header extends React.Component {
   }
 
   handleModeChange() {
+    const black = document.querySelector(".header__black");
+    const body = document.querySelector("body");
+
+    body.style.pointerEvents = "none";
+    black.style.display = "block";
+    black.classList.remove("header__black--animate");
+    black.classList.add("header__black--animate");
+
     this.setStateAs(!this.state.isButtonSetAtPhotos);
+    document.querySelector("#top").scrollIntoView();
+    
+    setTimeout(() => {
+      body.style.pointerEvents = "auto";
+      black.style.display = "none";
+    }, 1000);
   }
 
   handleModeChangeToPhotos() {
@@ -32,24 +47,18 @@ class Header extends React.Component {
 
   handleModeChangeToGraphics() {
     this.setStateAs(false);
-    this.handleScrollToTop();
   }
 
   handleScrollToTop() {
-    window.scroll(0, 0);
-}
-
-  componentDidMount() {
-    this.handleScrollToTop();
-  }
-
-  componentDidUpdate() {
-    this.handleScrollToTop();
+    setTimeout(() => {
+      document.querySelector("#top").scrollIntoView({ behavior: "smooth" });
+    }, 10);
   }
 
   render() {
     return (
       <header className="header">
+      <div className="header__black"></div>
 
         <section className="header__logo" onClick={ this.handleScrollToTop }>
 

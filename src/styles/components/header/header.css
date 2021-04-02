@@ -43,6 +43,22 @@
   font-weight: normal;
   text-rendering: optimizeLegibility;
 }
+@-webkit-keyframes changingMode {
+  0% {
+    background-color: black;
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+@keyframes changingMode {
+  0% {
+    background-color: black;
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
 .header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -62,6 +78,19 @@
   width: 100vw;
   position: fixed;
   top: 0;
+}
+.header__black {
+  content: "";
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.header__black--animate {
+  -webkit-animation: changingMode 1s forwards ease-out;
+          animation: changingMode 1s forwards ease-out;
 }
 .header__logo {
   width: 230px;
@@ -223,6 +252,7 @@
   }
   .header__logo {
     font-size: 16px;
+    width: 200px;
   }
 }
 @media (max-width: 1024px) {

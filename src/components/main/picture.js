@@ -141,10 +141,12 @@ class Picture extends React.Component {
         <picture 
           id={"picture" + this.props.data} 
           className="picture"
-          onClick={this.handleReviewMounting}>
+          onClick={this.handleReviewMounting}
+          style={ contentArray[this.props.type][this.props.data].style }>
           <img 
             src={ contentArray[this.props.type][this.props.data].src } 
             alt={ contentArray[this.props.type][this.props.data].alt } 
+            style={ contentArray[this.props.type][this.props.data].style }
             className="picture__img" />
         </picture>
 
