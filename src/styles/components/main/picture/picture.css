@@ -59,8 +59,8 @@
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  -o-object-position: left;
-     object-position: left;
+  -o-object-position: center;
+     object-position: center;
   pointer-events: none;
 }
 /*# sourceMappingURL=picture.css.map */

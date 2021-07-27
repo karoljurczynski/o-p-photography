@@ -211,7 +211,7 @@ class Main extends React.Component {
   linkToId(e) {
     let container;
 
-    if (e.target.innerText.toLowerCase() !== "featured") {
+    if (e.target.innerText.toLowerCase() === "contact") {
       container = document.querySelector("#" + e.target.innerText.toLowerCase());
       
       setTimeout(() => {
@@ -261,7 +261,7 @@ class Main extends React.Component {
             })
           }
 
-          { // RENDERING CATEGORIES
+          {/* { // RENDERING CATEGORIES
             menuOptions[ Number(this.props.isPhotoModeEnabled) ].map(content => {
               if (content === "CONTACT") return null;
               return (
@@ -272,7 +272,7 @@ class Main extends React.Component {
 
               )
             })
-          }
+          } */}
 
         </section>
       
