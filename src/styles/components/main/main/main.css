@@ -68,6 +68,10 @@
   top: 30px;
 }
 
+.background-loading {
+  display: none;
+}
+
 @media (max-width: 1200px) {
   .main__menu-icon {
     left: calc(100vw - 80px);

@@ -4,7 +4,6 @@ import React from 'react';
 import '../styles/components/app/app.css';
 import Header from './header';
 import Main from './main/main';
-import Footer from './footer';
 
 
 // COMPONENT
@@ -28,7 +27,6 @@ class App extends React.Component {
         <div id="top"></div>
         <Header changeMode={ this.changeMode } />
         <Main isPhotoModeEnabled={ this.state.isPhotoModeEnabled } />
-        <Footer />
 
       </div>
     );

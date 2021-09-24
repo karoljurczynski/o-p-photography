@@ -1,6 +1,7 @@
 // IMPORTS
 
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import '../../styles/components/main/photo_review/photo_review.css';
 
 
@@ -175,12 +176,11 @@ class PhotoReview extends React.Component {
           <span className="photo-review__previous__top-bar"></span>
           <span className="photo-review__previous__bottom-bar"></span>
         </button>
-
+        
         <img 
           className="photo-review__picture" 
           src={this.state.src}
-          alt={this.state.alt}
-          id={this.state.id}>
+          alt={this.state.alt}>
         </img>
 
         <h3 

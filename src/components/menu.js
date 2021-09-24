@@ -41,7 +41,7 @@ class Menu extends React.Component {
                return (
 
                 <li className="menu__list__item">
-                  <a className="menu__list__item__content" onClick={this.props.linkTo}>{option}</a>
+                  <button className="menu__list__item__content" onClick={this.props.linkTo}>{option}</button>
                 </li>
 
                )

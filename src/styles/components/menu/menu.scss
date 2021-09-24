@@ -53,6 +53,10 @@
 
 // STYLES
 
+button {
+  background-color: transparent;
+}
+
 .menu {
   @include flexSetup();
   width: 100vw;

@@ -5,8 +5,8 @@ import '../../styles/components/main/main/main.css';
 import '../../styles/components/main/grid/grid.css';
 import Menu from '../menu';
 import Picture from './picture';
+import Footer from '../footer';
 import Spinner from './spinner';
-import { menuOptions } from '../../index';
 import { initializeApp } from 'firebase/app';
 import { getFirestore, getDoc, doc} from 'firebase/firestore';
 
@@ -80,8 +80,8 @@ class Main extends React.Component {
     const databaseContent = await getDoc(docRef);
     this.setState({
       contentArray: {
-        photos: await databaseContent.data().photos,
-        artworks: await databaseContent.data().artworks
+        photos: await databaseContent.data().isRandomOrder ? this.shuffle(await databaseContent.data().photos) : await databaseContent.data().photos,
+        artworks: await databaseContent.data().isRandomOrder ? this.shuffle(await databaseContent.data().artworks) : await databaseContent.data().artworks,
       }
     });
   }
@@ -287,6 +287,7 @@ class Main extends React.Component {
 
   render() {
     return (
+      <>
       <main className="main">
 
         <Menu exit={this.handleMenu} linkTo={this.linkToId} isPhotoModeEnabled={ this.props.isPhotoModeEnabled } />
@@ -301,21 +302,34 @@ class Main extends React.Component {
 
         <section className="main__grid" style={ !this.props.isPhotoModeEnabled ? {gridAutoRows: ""} : null }>
 
-
           { // RENDERING WORKS
             this.state.contentArray[ this.props.isPhotoModeEnabled ? 'photos' : 'artworks' ].map((content, index) => {
               return (
-                
                 <div id={ index + 1 } key={ index } className={ this.props.isPhotoModeEnabled ? "main__grid__item__photo" : "main__grid__item__artwork" }>
                   <Picture 
                     type={this.props.isPhotoModeEnabled ? 'photos' : 'artworks'} 
                     data={this.state.contentArray} 
                     id={index} />            
                 </div>
-
               )
             })
           }
+
+          { this.state.isLoaded &&
+            this.state.contentArray.photos.map(content => {
+              return (
+                <img className="background-loading" src={content.src} alt="" />
+              )
+            })
+          }
+          { this.state.isLoaded &&
+            this.state.contentArray.artworks.map(content => {
+              return (
+                <img className="background-loading" src={content.src} alt="" />
+              )
+            })
+          }
+          
 
           {/* { // RENDERING CATEGORIES
             menuOptions[ Number(this.props.isPhotoModeEnabled) ].map(content => {
@@ -333,6 +347,9 @@ class Main extends React.Component {
         </section>
       
       </main>
+
+      {this.state.isLoaded && <Footer />}
+      </>
     );
   }
 }

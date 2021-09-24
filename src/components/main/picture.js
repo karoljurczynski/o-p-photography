@@ -1,6 +1,8 @@
 // IMPORTS
 
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import '../../styles/components/main/picture/picture.css';
 import PhotoReview from './photo_review';
 
@@ -141,12 +143,16 @@ class Picture extends React.Component {
           id={"picture" + this.props.id} 
           className="picture"
           onClick={this.handleReviewMounting}
-          style={this.props.data.style}>
-          <img 
+          style={this.props.data[this.props.type][this.props.id].style}>
+          <LazyLoadImage
+            height="100%"
+            width="100%"
+            style={{objectFit: "cover", objectPosition: this.props.data[this.props.type][this.props.id].style.objectPosition}}
+            effect="blur"
+            className="picture__img"
             src={this.props.data[this.props.type][this.props.id].src}
             alt={this.props.data[this.props.type][this.props.id].alt}
-            style={this.props.data[this.props.type][this.props.id].style}
-            className="picture__img" />
+          />
         </picture>
 
         {this.state.isReviewMounted
