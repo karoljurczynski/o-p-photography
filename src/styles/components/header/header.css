@@ -260,6 +260,7 @@
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
+    padding: 8px;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;

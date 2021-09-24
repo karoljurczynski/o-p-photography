@@ -5,10 +5,26 @@
 }
 @media (max-width: 1024px) {
   .main__menu-icon {
-    top: 10px;
+    top: 24px;
     left: calc(100vw - 50px);
     -webkit-transform: translate(0, 0);
             transform: translate(0, 0);
+    height: 25px;
+    width: 30px;
+  }
+  .main__menu-icon__top-bar {
+    top: 2px;
+  }
+  .main__menu-icon__middle-bar {
+    top: 11px;
+  }
+  .main__menu-icon__bottom-bar {
+    top: 19px;
+  }
+}
+@media (max-width: 340px) {
+  .main__menu-icon {
+    left: calc(100vw - 40px);
   }
 }
 /*# sourceMappingURL=media.css.map */
