@@ -6,10 +6,28 @@ import '../../styles/components/main/grid/grid.css';
 import Menu from '../menu';
 import Picture from './picture';
 import Spinner from './spinner';
-import { contentArray, menuOptions } from '../../index';
+import { menuOptions } from '../../index';
+import { initializeApp } from 'firebase/app';
+import { getFirestore, getDoc, doc} from 'firebase/firestore';
+
+
+// DATABASE CONFIG
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC8NLwGLqte23XieIBAoxCgRlizm-0SGsE",
+  authDomain: "oliwier-pakula.firebaseapp.com",
+  projectId: "oliwier-pakula",
+  storageBucket: "oliwier-pakula.appspot.com",
+  messagingSenderId: "478464112458",
+  appId: "1:478464112458:web:5628d94b39ea4be480b3b3"
+};
+initializeApp(firebaseConfig);
+export const db = getFirestore();
 
 
 // GLOBALS
+
 
 let scrollY = 0;
 
@@ -24,6 +42,10 @@ class Main extends React.Component {
       isMenuOpened: false,
       isLoaded: this.props.isLoaded,
       isPhotoModeEnabled: this.props.mode,
+      contentArray: {
+        photos: [],
+        artworks: []
+      }
     };
 
     this.handleMenu = this.handleMenu.bind(this);
@@ -32,6 +54,36 @@ class Main extends React.Component {
     this.linkToId = this.linkToId.bind(this);
     this.spinnerFunction = this.spinnerFunction.bind(this);
     this.changeLoadingState = this.changeLoadingState.bind(this);
+    this.loadContentFromDatabase = this.loadContentFromDatabase.bind(this);
+  }
+
+  shuffle (array) {
+    var currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
+
+  async loadContentFromDatabase() {
+    const docRef = doc(db, "content", "images");
+    const databaseContent = await getDoc(docRef);
+    this.setState({
+      contentArray: {
+        photos: await databaseContent.data().photos,
+        artworks: await databaseContent.data().artworks
+      }
+    });
   }
 
   bodyFreezer(isMenuOpened) {
@@ -204,6 +256,7 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
+    this.loadContentFromDatabase();
     this.menuIconTransformer(false);
   }
 
@@ -250,11 +303,14 @@ class Main extends React.Component {
 
 
           { // RENDERING WORKS
-            contentArray[ this.props.isPhotoModeEnabled ? 'photos' : 'artworks' ].map((content, index) => {
+            this.state.contentArray[ this.props.isPhotoModeEnabled ? 'photos' : 'artworks' ].map((content, index) => {
               return (
                 
-                <div id={ index + 1 } className={ this.props.isPhotoModeEnabled ? "main__grid__item__photo" : "main__grid__item__artwork" }>
-                  <Picture type={ this.props.isPhotoModeEnabled ? 'photos' : 'artworks' } data={ index } />            
+                <div id={ index + 1 } key={ index } className={ this.props.isPhotoModeEnabled ? "main__grid__item__photo" : "main__grid__item__artwork" }>
+                  <Picture 
+                    type={this.props.isPhotoModeEnabled ? 'photos' : 'artworks'} 
+                    data={this.state.contentArray} 
+                    id={index} />            
                 </div>
 
               )

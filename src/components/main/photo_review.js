@@ -2,7 +2,6 @@
 
 import React from 'react';
 import '../../styles/components/main/photo_review/photo_review.css';
-import { contentArray } from './../../index';
 
 
 // COMPONENT
@@ -79,21 +78,21 @@ class PhotoReview extends React.Component {
   }
   
   handleNextPhoto() {
-    if (this.state.id + 1 === contentArray[this.state.type].length) {
+    if (this.state.id + 1 === this.props.data[this.state.type].length) {
       this.setState({
         id: 0,
-        src: contentArray[this.state.type][0].src,
-        title: contentArray[this.state.type][0].title,
-        alt: contentArray[this.state.type][0].alt
+        src: this.props.data[this.state.type][0].src,
+        title: this.props.data[this.state.type][0].title,
+        alt: this.props.data[this.state.type][0].alt
       });
     }
 
     else {
       this.setState({
         id: this.state.id + 1,
-        src: contentArray[this.state.type][this.state.id + 1].src,
-        title: contentArray[this.state.type][this.state.id + 1].title,
-        alt: contentArray[this.state.type][this.state.id + 1].alt
+        src: this.props.data[this.state.type][this.state.id + 1].src,
+        title: this.props.data[this.state.type][this.state.id + 1].title,
+        alt: this.props.data[this.state.type][this.state.id + 1].alt
       });
     }
   }
@@ -101,19 +100,19 @@ class PhotoReview extends React.Component {
   handlePreviousPhoto() {
     if ((this.state.id) === 0) {
       this.setState({
-        id: contentArray[this.state.type].length - 1,
-        src: contentArray[this.state.type][contentArray[this.state.type].length - 1].src,
-        title: contentArray[this.state.type][contentArray[this.state.type].length - 1].title,
-        alt: contentArray[this.state.type][contentArray[this.state.type].length - 1].alt
+        id: this.props.data[this.state.type].length - 1,
+        src: this.props.data[this.state.type][this.props.data[this.state.type].length - 1].src,
+        title: this.props.data[this.state.type][this.props.data[this.state.type].length - 1].title,
+        alt: this.props.data[this.state.type][this.props.data[this.state.type].length - 1].alt
       });
     }
 
     else {
       this.setState({
         id: this.state.id - 1,
-        src: contentArray[this.state.type][this.state.id - 1].src,
-        title: contentArray[this.state.type][this.state.id - 1].title,
-        alt: contentArray[this.state.type][this.state.id - 1].alt
+        src: this.props.data[this.state.type][this.state.id - 1].src,
+        title: this.props.data[this.state.type][this.state.id - 1].title,
+        alt: this.props.data[this.state.type][this.state.id - 1].alt
       });
     }
   }

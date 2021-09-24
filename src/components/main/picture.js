@@ -3,7 +3,6 @@
 import React from 'react';
 import '../../styles/components/main/picture/picture.css';
 import PhotoReview from './photo_review';
-import { contentArray } from './../../index';
 
 
 // GLOBALS
@@ -139,25 +138,26 @@ class Picture extends React.Component {
     return (
       <>
         <picture 
-          id={"picture" + this.props.data} 
+          id={"picture" + this.props.id} 
           className="picture"
           onClick={this.handleReviewMounting}
-          style={ contentArray[this.props.type][this.props.data].style }>
+          style={this.props.data.style}>
           <img 
-            src={ contentArray[this.props.type][this.props.data].src } 
-            alt={ contentArray[this.props.type][this.props.data].alt } 
-            style={ contentArray[this.props.type][this.props.data].style }
+            src={this.props.data[this.props.type][this.props.id].src}
+            alt={this.props.data[this.props.type][this.props.id].alt}
+            style={this.props.data[this.props.type][this.props.id].style}
             className="picture__img" />
         </picture>
 
         {this.state.isReviewMounted
           ? <PhotoReview
-              id={ this.props.data }
-              type={ this.props.type }
-              src={ contentArray[this.props.type][this.props.data].src }
-              alt={ contentArray[this.props.type][this.props.data].alt }
-              title={ contentArray[this.props.type][this.props.data].title }
-              style={ this.pictureStyle }
+              data={this.props.data}
+              id={this.props.id}
+              type={this.props.type}
+              src={this.props.data[this.props.type][this.props.id].src}
+              alt={this.props.data[this.props.type][this.props.id].alt}
+              title={this.props.data[this.props.type][this.props.id].title}
+              style={this.props.data[this.props.type][this.props.id].style}
               onClosed={ this.handleReviewUnmounting } />
           : null}
       </>
